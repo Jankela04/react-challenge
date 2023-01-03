@@ -1,0 +1,16 @@
+.btn {
+    color: white;
+    padding: 0.5em 0.6em;
+    background-color: rgb(66, 128, 243);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    gap: 0.5em;
+    font-family: inherit;
+    transition: all 0.4s;
+}
+.btn:hover {
+    scale: 1.05;
+    background-color: rgb(98, 149, 243);
+}
