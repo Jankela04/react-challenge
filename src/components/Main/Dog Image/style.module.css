@@ -4,10 +4,16 @@
     height: 7.5em;
     background-size: cover;
     position: relative;
+    transition: scale 0.2s linear;
 }
 
 .card svg {
     position: absolute;
     bottom: 0.5em;
     right: 0.5em;
+    transition: all 0.2s;
+}
+
+.card:hover {
+    scale: 1.1;
 }

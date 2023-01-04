@@ -1,22 +1,26 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { v4 } from "uuid";
 
-type InitialState = {
-    loading: boolean;
-    dogs: {
-        img: string;
-        liked: boolean;
-    }[];
-    error: string;
+export type Dog = {
+    img: string;
+    liked: boolean;
+    id: string;
+};
+
+export type State = {
+    loading?: boolean;
+    dogs: Dog[];
+    error?: string;
 };
 type Response = {
     message: string[];
     status: string;
 };
 
-const initialState = {
+const initialState: State = {
     loading: false,
-    dogs: [{}],
+    dogs: [],
     error: "",
 };
 
@@ -33,7 +37,16 @@ export const fetchDogs = createAsyncThunk(
 const dogsClice = createSlice({
     name: "characters",
     initialState,
-    reducers: {},
+    reducers: {
+        toggleLiked: (state, action: PayloadAction<string>) => {
+            const id = action.payload;
+            state.dogs.map((dog) => {
+                if (dog.id === id) return (dog.liked = !dog.liked);
+
+                return dog;
+            });
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchDogs.pending, (state) => {
             state.loading = true;
@@ -44,7 +57,7 @@ const dogsClice = createSlice({
                 state.loading = false;
                 state.error = "";
                 const object = action.payload.message.map((link) => {
-                    return { img: link, liked: false };
+                    return { img: link, liked: false, id: v4() };
                 });
                 state.dogs = object;
             }
@@ -56,4 +69,6 @@ const dogsClice = createSlice({
         });
     },
 });
+export const { toggleLiked } = dogsClice.actions;
+
 export default dogsClice.reducer;

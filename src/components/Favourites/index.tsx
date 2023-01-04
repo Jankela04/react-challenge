@@ -1,14 +1,18 @@
-import React from "react";
-import FavouritesContainer from "./Container";
 import Title from "./Title";
+import { useAppSelector } from "../../redux/hooks";
+import Container from "../Main/Container";
+import styles from "../Main/style.module.css";
 
-type Props = {};
+const Favourites = () => {
+    const state = useAppSelector((state) => state.dogs);
+    const filteredDogs = state.dogs.filter((dog) => dog.liked);
 
-const Favourites = (props: Props) => {
     return (
         <div>
             <Title />
-            <FavouritesContainer />
+            <div className={styles.container}>
+                <Container dogs={filteredDogs} />
+            </div>
         </div>
     );
 };
