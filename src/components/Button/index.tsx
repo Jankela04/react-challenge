@@ -6,7 +6,7 @@ type Props = {};
 
 const Button = (props: Props) => {
     return (
-        <button className={style.btn}>
+        <button className={style.btn} type="submit">
             <SearchIcon /> Search
         </button>
     );
