@@ -1,5 +1,5 @@
 import React from "react";
-import { SearchIcon } from "../SVGs";
+import { SearchIcon } from "../../SVGs";
 import style from "./style.module.css";
 
 type Props = {};

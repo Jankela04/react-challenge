@@ -1,0 +1,18 @@
+.suggestion_box {
+    z-index: 1;
+    width: 80.5%;
+    border: 1px solid black;
+    background-color: white;
+    position: absolute;
+    top: 2.2em;
+    left: 0em;
+}
+
+.suggestion_row {
+    padding: 0.2em;
+    cursor: pointer;
+}
+
+.suggestion_row:hover {
+    background-color: #d6d6d6;
+}

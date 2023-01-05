@@ -26,11 +26,18 @@ const initialState: State = {
 
 export const fetchDogs = createAsyncThunk(
     "dogs/fetchDogsByBreed",
-    async (breed: string) => {
-        const response = await axios.get(
-            `https://dog.ceo/api/breed/${breed}/images/random/10`
-        );
-        return response.data;
+    async ({ breed, sub }: { breed: string; sub?: string }) => {
+        if (sub == null) {
+            const response = await axios.get(
+                `https://dog.ceo/api/breed/${breed}/images/random/10`
+            );
+            return response.data;
+        } else {
+            const response = await axios.get(
+                `https://dog.ceo/api/breed/${breed}/${sub}/images/random/10`
+            );
+            return response.data;
+        }
     }
 );
 
